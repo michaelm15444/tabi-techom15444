@@ -42,7 +42,7 @@ input[type=date],input[type=text],input[type=number],input[type=time]{font:inher
 .st input{display:block;width:100%;min-width:0;max-width:100%;min-height:38px;-webkit-appearance:none;appearance:none;text-align:left;margin-top:2px}
 .st select{display:block;width:100%;min-height:38px;margin-top:2px;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:var(--b);border-radius:14px;padding:4px 10px}
 .st input::-webkit-date-and-time-value{text-align:left;min-height:1.4em}
-.ed>label{display:block;font-size:14px;margin-bottom:10px}.ed label{font-size:14px;margin:4px 10px 0 0;display:inline-block}.ed input[type=checkbox]{width:auto;margin-right:4px;accent-color:#3E3A39}.ei{margin-bottom:10px;padding:10px 12px;position:relative}.ei input[type=text]{width:100%;margin-bottom:6px}.ei input[data-f="0"]{width:calc(100% - 40px)}.ei .del{position:absolute;right:2px;top:2px}
+.ed>label{display:block;font-size:14px;margin-bottom:10px}.ed label{font-size:14px;margin:4px 10px 0 0;display:inline-block}.ed input[type=checkbox]{width:auto;margin-right:4px;accent-color:#3E3A39}.ei{margin-bottom:10px;padding:10px 12px;position:relative}.ei input[type=text]{width:100%;margin-bottom:6px}.ei input[data-f="0"],.ei>label input[type=text]{width:calc(100% - 108px)}.ei .del{position:absolute;right:2px;top:2px}
 .info{display:grid;grid-template-columns:1fr 1fr;gap:10px}.info div{border:var(--b);border-radius:18px;padding:6px 12px;line-height:1.4}.info small{display:block;font-size:12px}
 .info div:nth-child(6n+1){background:var(--pk)}.info div:nth-child(6n+2){background:var(--yl)}.info div:nth-child(6n+3){background:var(--bl)}.info div:nth-child(6n+4){background:var(--gr)}.info div:nth-child(6n+5){background:var(--yl)}.info div:nth-child(6n){background:var(--pk)}
 .fl{margin-bottom:14px;padding:0;overflow:hidden}
@@ -66,6 +66,8 @@ input[type=date],input[type=text],input[type=number],input[type=time]{font:inher
 .tl li::before{content:"";position:absolute;left:-33px;top:8px;width:18px;height:18px;border-radius:50%;border:var(--b);background:var(--bl)}
 .tl li.m::before{background:var(--pk)}
 .tl .bx{border:var(--b);border-radius:18px;padding:8px 12px 10px;background:var(--bg)}
+.tl li.hd::before{background:var(--yl)}.tl li.hd h3{display:inline-block;background:var(--yl);border:var(--b);border-radius:99px;padding:0 14px;font-size:16px}
+.ei>label{display:block;margin:0 0 4px}.ei .mv{position:absolute;top:2px;width:34px;height:40px;font:inherit;font-size:16px;background:none;border:0;color:var(--ink);cursor:pointer}.ei .mv.u{right:70px}.ei .mv.d{right:36px}
 .tl time{font-size:14px}
 .tl h3{font-size:17px;font-weight:400}
 .tl p{font-size:14px;margin-top:2px}
@@ -175,7 +177,7 @@ footer{text-align:center;font-size:13px;padding-bottom:12px}
 </main>
 <script>
 (function(){
-var K="fuk-v1",S={date:"2026-11-20",day:0,stay:{},pf:[{n:"我",c:{},x:[],t:"cabin"}],pi:0};
+var K="fuk-v1",S={date:"2026-11-04",day:0,stay:{},pf:[{n:"我",c:{},x:[],t:"cabin"}],pi:0};
 try{var p=JSON.parse(localStorage.getItem(K));if(p&&typeof p==="object")S=Object.assign(S,p)}catch(e){}
 if(S.pk){S.pf=[{n:"我",c:S.pk.c||{},x:S.pk.x||[],t:S.pk.t||"cabin"}];S.pi=0;delete S.pk}
 if(!Array.isArray(S.pf)||!S.pf.length)S.pf=[{n:"我",c:{},x:[],t:"cabin"}];if(!(S.pi>=0&&S.pi<S.pf.length))S.pi=0;
@@ -184,7 +186,7 @@ function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
 function $(i){return document.getElementById(i)}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 var W="日一二三四五六";
-function dt(n){var d=new Date(S.date+"T00:00:00");if(isNaN(d))d=new Date("2026-11-20T00:00:00");d.setDate(d.getDate()+n);return d}
+function dt(n){var d=new Date(S.date+"T00:00:00");if(isNaN(d))d=new Date("2026-11-04T00:00:00");d.setDate(d.getDate()+n);return d}
 function md(d){return(d.getMonth()+1)+"/"+d.getDate()}
 function wk(d){return"週"+W[d.getDay()]}
 function head(){
@@ -198,11 +200,7 @@ function head(){
  $("fl").innerHTML=f("去程",dt(0),C.fr+" "+C.ob.f,C.dest+" "+C.ob.t,C.ob.d,C.ob.a,C.ob.no,"#A8D3E6")+f("回程",dt(L),C.dest+" "+C.rb.f,C.fr+" "+C.rb.t,C.rb.d,C.rb.a,C.rb.no,"#F2A497");
 }
 var TG={mrt:["地下鐵","bl"],nis:["西鐵","pk"],bus:["巴士","yl"],walk:["步行","gr"],air:["飛機","w"],jr:["JR／電車","pk"],taxi:["計程車","yl"]};
-var D=[
-["抵達博多",[["08:35","香港起飛","建議提早 2–3 小時到機場辦理登機。",["air"],0],["13:05","抵達福岡機場","入境後搭地下鐵機場線，約 5 分鐘到博多站。",["mrt"],0],["14:30","寄放行李、入住","先到酒店寄存行李，輕鬆出門。",["walk"],0],["15:30","櫛田神社與博多老街","博多祇園山笠的守護神社，境內可看到巨大的飾山。",["mrt","walk"],1],["18:30","中洲屋台","河畔小攤，吃拉麵、串燒和關東煮。",["walk"],1]]],
-["太宰府散步",[["09:00","前往太宰府","地下鐵到天神，轉搭西鐵，在二日市換乘太宰府線。",["mrt","nis"],0],["10:00","太宰府天滿宮","祭祀學問之神菅原道真，可求學業御守。",["walk"],1],["11:30","參道吃梅枝餅","現烤的紅豆餅，順道逛參道小店。",["walk"],0],["13:00","九州國立博物館","可從天滿宮步行前往，展覽看累了還能休息。",["walk"],0],["15:30","回天神逛街","搭西鐵回天神，百貨與藥妝店都集中在這裡。",["nis"],0],["19:00","博多牛腸鍋","福岡名物，味噌或醬油湯底都值得試。",["walk"],1]]],
-["海濱與夜景",[["09:30","大濠公園","搭地下鐵空港線到大濠公園站，沿湖散步。",["mrt"],0],["11:00","福岡城跡","石垣與天守台遺跡，登高可眺望市景。",["walk"],0],["12:30","天神午餐","自由選擇，拉麵、壽司或定食。",["walk"],0],["14:30","百道海濱","搭巴士前往，海邊風景開闊。",["bus"],0],["16:30","福岡塔","高約 234 公尺的海濱塔，傍晚上去看日落與夜景。",["walk"],1],["19:00","水炊き晚餐","博多雞肉鍋，湯頭濃郁暖身。",["bus"],0]]],
-["買手信回家",[["09:00","退房、逛博多站","明太子、博多通りもん等手信都買得到。",["walk"],1],["11:30","前往機場","地下鐵機場線，約 5 分鐘，建議提早 2 小時到。",["mrt"],0],["14:05","福岡起飛","16:55 抵達香港，旅程完成。",["air"],0]]]];
+var D=[["抵達博多＋運河城",[["04:00","搭 NA12 首班車","首班車 04:00 由杏花邨開出（上車站請自行核對時間），約 05:15 抵達機場 T2。",["bus"],0],["05:15","辦理登機與過關","先網上登記，託運行李後過關、吃早餐。櫃位通常於起飛前約 60 分鐘截止。",["walk"],0],["07:50","香港起飛 UO600","約 07:15 到閘口，07:20 登機。飛行約 3 小時 50 分，日本比香港快 1 小時。",["air"],0],["12:30","抵達福岡機場","入境、提行李後，搭免費接駁巴士到地下鐵站，再搭空港線約 6 分鐘到博多站。",["bus","mrt"],0],["14:15","寄放行李","酒店在博多站附近，先寄存行李，輕鬆出門。",["walk"],0],["15:00","運河城購物","第一天主力。從博多站步行約 15 分鐘或搭巴士，逛到 20:30，整點可看噴泉秀。",["walk","bus"],1],["18:00","運河城晚餐","拉麵競技場或商場內餐廳，邊逛邊吃。",["walk"],0]]],["太宰府＋天神",[["09:00","前往太宰府","博多站搭地下鐵到天神，轉搭西鐵，約 50 分鐘。",["mrt","nis"],0],["10:00","太宰府天滿宮","祭祀學問之神菅原道真，約 1 至 1.5 小時。",["walk"],1],["11:30","參道午餐、梅枝餅","現烤梅枝餅，順道逛參道小店，也可看看隈研吾設計的星巴克。",["walk"],1],["12:45","光明禪寺","枯山水庭園，約 30 至 40 分鐘。",["walk"],0],["13:30","回天神","搭西鐵返回，約 14:30 抵達。",["nis"],0],["14:30","天神百貨逛街","Parco、大丸、岩田屋，輕鬆逛。",["walk"],0],["15:30","大名小店與咖啡","找間咖啡店歇腳，喝下午茶。",["walk"],0],["17:00","天神地下街","逛一圈，買點小東西。",["walk"],0],["18:30","牛腸鍋或水炊鍋晚餐","福岡名物，味噌或醬油湯底都值得試。",["walk"],1],["20:00","回博多站","地下鐵約 5 分鐘。",["mrt"],0]]],["柳川遊船",[["09:00","前往柳川","博多站搭地下鐵到天神，轉西鐵特急到西鐵柳川站。西鐵常有柳川觀光套票，可先查。",["mrt","nis"],0],["10:30","柳川遊船","船夫撐篙，沿水道慢慢滑行，約 1 小時。11 月通常有暖桌船，出發前查開放日期。",["walk"],1],["11:45","鰻魚蒸籠飯午餐","柳川名物，米飯上鋪蒲燒鰻魚再蒸熟。",["walk"],1],["13:00","北原白秋故居與老街","遊船後散步，慢慢逛。",["walk"],0],["14:30","回博多","搭西鐵回天神再轉地下鐵，約 15:45 抵達博多站。",["nis","mrt"],0],["16:00","博多站周邊或休息","逛博多站周邊商場，或回酒店休息。",["walk"],0],["18:30","中洲屋台","河畔小攤，吃拉麵、串燒和關東煮。",["walk"],0]]],["手信＋回程",[["08:00","退房","行李寄存在酒店。",["walk"],0],["09:00","櫛田神社與博多老街","從博多站步行或搭車約 10 分鐘。",["walk"],1],["10:30","博多站買手信與午餐","預留約 3 小時。明太子等易壞食品放到最後買。",["walk"],1],["13:45","取行李、前往機場","地下鐵空港線再轉免費接駁巴士，約 40 分鐘。",["mrt","bus"],0],["14:30","辦理登機與退稅","國際線櫃位，預留排隊時間。",["walk"],0],["18:00","福岡起飛 UO639","約 21:00 抵達香港（以航空公司時間為準），旅程完成。",["air"],0]]]];
 var ED=0;
 var TH=[["auto","自動（依目的地）"],["fuk","福岡"],["tyo","東京"],["osa","大阪"],["tpe","台北"],["nyc","紐約"],["la","洛杉磯"],["lon","倫敦"],["par","巴黎"],["sel","首爾"],["bkk","曼谷"],["sin","新加坡"],["syd","悉尼"],["gen","通用"]],thc;
 var LM={fuk:$("lm").innerHTML,
@@ -220,19 +218,20 @@ LM.sin='<g><path d="M222 190V90h14v100zM243 190V90h14v100zM264 190V90h14v100z" f
 LM.syd='<g><path d="M200 190q0-50 40-60q-6 30-6 60z" fill="#FFFCF6"/><path d="M236 190q-2-44 34-56q-4 28-2 56z" fill="#FFFCF6"/><path d="M270 190q-2-30 22-40q0 20 2 40z" fill="#FFFCF6"/></g><g><path d="M30 170q70-70 140 0M30 178h140" fill="none"/><path d="M70 150v28M100 136v42M130 150v28" fill="none" stroke-width="2"/></g>';
 var KW=[["fuk",/福岡|博多|fukuoka/i],["tyo",/東京|东京|tokyo/i],["osa",/大阪|osaka/i],["tpe",/台北|taipei/i],["nyc",/紐約|纽约|new york|nyc/i],["la",/洛杉磯|洛杉矶|los angeles/i],["lon",/倫敦|伦敦|london/i],["par",/巴黎|paris/i],["sel",/首爾|首尔|seoul/i],["bkk",/曼谷|bangkok/i],["sin",/新加坡|singapore/i],["syd",/悉尼|雪梨|sydney/i]];
 function th(){var v=S.cfg.th||"auto";if(v==="auto"){v="gen";var d=S.cfg.dest||"";for(var i=0;i<KW.length;i++)if(KW[i][1].test(d)){v=KW[i][0];break}}return LM[v]?v:"gen"}
-S.days=S.days||D;
+if(S.itv!==2){S.itv=2;S.days=D;S.date="2026-11-04";S.day=0;S.cfg=Object.assign(S.cfg||{},{ob:{no:"UO600",f:"HKG",t:"FUK",d:"07:50",a:"12:30"},rb:{no:"UO639",f:"FUK",t:"HKG",d:"18:00",a:"21:00"}});save()}else S.days=S.days||D;
 S.cfg=Object.assign({dest:"福岡",fr:"香港",tz:1,cur:"日圓 JPY",volt:"100V・A 型",lang:"日語"},S.cfg||{});
 S.cfg.ob=Object.assign({no:"",f:"HKG",t:"FUK",d:"08:35",a:"13:05"},S.cfg.ob);S.cfg.rb=Object.assign({no:"",f:"FUK",t:"HKG",d:"14:05",a:"16:55"},S.cfg.rb);
+function MV(j){return'<button class="mv u" data-mv="'+j+'" data-d="-1" aria-label="上移">↑</button><button class="mv d" data-mv="'+j+'" data-d="1" aria-label="下移">↓</button>'}
 function edh(d){var h='<div class="ed"><label>當天標題<input type="text" data-dt value="'+esc(d[0])+'"></label>';
- d[1].forEach(function(e,j){h+='<div class="card ei" data-j="'+j+'"><input type="text" data-f="0" value="'+esc(e[0])+'" placeholder="時間，例如 09:00"><input type="text" data-f="1" value="'+esc(e[1])+'" placeholder="行程名稱"><input type="text" data-f="2" value="'+esc(e[2])+'" placeholder="說明">';
+ d[1].forEach(function(e,j){if(e[5]){h+='<div class="card ei" data-j="'+j+'"><label>段落標題<input type="text" data-f="1" value="'+esc(e[1])+'" placeholder="例如：上午・太宰府"></label>'+MV(j)+'<button class="del" data-rm="'+j+'" aria-label="刪除標題">×</button><button class="btn" data-ai="'+j+'" style="margin-top:6px">＋在此標題下新增行程</button></div>';return}h+='<div class="card ei" data-j="'+j+'"><input type="text" data-f="0" value="'+esc(e[0])+'" placeholder="時間，例如 09:00"><input type="text" data-f="1" value="'+esc(e[1])+'" placeholder="行程名稱"><input type="text" data-f="2" value="'+esc(e[2])+'" placeholder="說明">';
   for(var k in TG)h+='<label><input type="checkbox" data-tg="'+k+'"'+(e[3].indexOf(k)>-1?" checked":"")+'>'+TG[k][0]+"</label>";
-  h+='<label><input type="checkbox" data-m'+(e[4]?" checked":"")+'>必去</label><button class="del" data-rm="'+j+'" aria-label="刪除這個行程">×</button></div>'});
+  h+='<label><input type="checkbox" data-m'+(e[4]?" checked":"")+'>必去</label>'+MV(j)+'<button class="del" data-rm="'+j+'" aria-label="刪除這個行程">×</button></div>'});
  return h+"</div>"}
 function day(){
  var D=S.days;if(S.day>=D.length)S.day=D.length-1;var h="";D.forEach(function(d,i){var x=dt(i);h+='<button class="dt" role="tab" aria-selected="'+(S.day===i)+'" data-i="'+i+'"><b>Day '+(i+1)+"</b><span>"+md(x)+" "+wk(x)+"</span></button>"});$("dts").innerHTML=h;
  var d=D[S.day],o='<div class="pop"><p class="dh">'+esc(d[0])+'</p><ol class="tl">';
- d[1].forEach(function(e){o+='<li class="'+(e[4]?"m":"")+'"><div class="bx">'+(e[4]?'<span class="must">必去</span>':"")+"<time>"+e[0]+"</time><h3>"+esc(e[1])+"</h3><p>"+esc(e[2])+"</p>"+e[3].map(function(k){return'<span class="tg '+TG[k][1]+'">'+TG[k][0]+"</span>"}).join("")+"</div></li>"});
- $("day").innerHTML=(ED?edh(d):o+"</ol></div>")+'<div class="add" style="margin-top:14px"><button class="btn" id="ted">'+(ED?"完成編輯":"編輯行程")+"</button>"+(ED?'<button class="btn" id="tad">＋新增行程</button><button class="btn" id="tdd">＋增加一天</button><button class="btn g" id="tdr" style="margin:0">刪除這一天</button>':"")+"</div>"}
+ d[1].forEach(function(e){if(e[5]){o+='<li class="hd"><h3>'+esc(e[1])+"</h3></li>";return}o+='<li class="'+(e[4]?"m":"")+'"><div class="bx">'+(e[4]?'<span class="must">必去</span>':"")+"<time>"+esc(e[0])+"</time><h3>"+esc(e[1])+"</h3><p>"+esc(e[2])+"</p>"+e[3].map(function(k){return'<span class="tg '+TG[k][1]+'">'+TG[k][0]+"</span>"}).join("")+"</div></li>"});
+ $("day").innerHTML=(ED?edh(d):o+"</ol></div>")+'<div class="add" style="margin-top:14px"><button class="btn" id="ted">'+(ED?"完成編輯":"編輯行程")+"</button>"+(ED?'<button class="btn" id="tad">＋新增行程</button><button class="btn" id="tah">＋新增標題</button><button class="btn" id="tdd">＋增加一天</button><button class="btn g" id="tdr" style="margin:0">刪除這一天</button>':"")+"</div>"}
 var BG={cabin:["手提行李","必須手提",["後備鋰電池與充電寶只可手提，不可寄艙。100Wh 以下可帶，100–160Wh 需航空公司批准，超過 160Wh 不可帶。","液體、啫喱與噴霧每樽不超過 100 毫升，全部放入 1 個 1 公升透明索鏈袋，過安檢時拿出。","電子煙、加熱煙必須手提，機上不可使用。","火機通常每人限 1 個，須隨身攜帶。","證件、現金、藥物與貴重物品建議手提。"]],
 check:["寄艙行李","必須寄艙",["刀具、剪刀、工具、球棍、登山杖等可傷人的物品，必須寄艙。","超過 100 毫升的液體、啫喱與噴霧，必須寄艙。","寄艙噴霧每罐不超過 500 毫升，每人總量通常限 2 公升。","充電寶、後備鋰電池、電子煙絕對不可寄艙，貴重物品也別放。"]]};
 var PD=[
@@ -285,7 +284,7 @@ document.addEventListener("keydown",function(e){var t=e.target.tagName;if(t==="I
 $("day").addEventListener("input",function(e){var t=e.target,j=t.closest(".ei");if(t.hasAttribute("data-dt"))S.days[S.day][0]=t.value;else if(j&&t.dataset.f!=null)S.days[S.day][1][+j.dataset.j][+t.dataset.f]=t.value;save()});
 $("day").addEventListener("change",function(e){var t=e.target,j=t.closest(".ei");if(!j)return;var it=S.days[S.day][1][+j.dataset.j];if(t.dataset.tg){var a=it[3],k=a.indexOf(t.dataset.tg);if(t.checked&&k<0)a.push(t.dataset.tg);if(!t.checked&&k>-1)a.splice(k,1)}if(t.hasAttribute("data-m"))it[4]=t.checked?1:0;save()});
 $("day").addEventListener("click",function(e){var t=e.target,D=S.days;
- if(t.id==="ted")ED=!ED;else if(t.id==="tad")D[S.day][1].push(["","新行程","",["walk"],0]);else if(t.id==="tdd"){D.push(["新的一天",[]]);S.day=D.length-1;head()}else if(t.id==="tdr"){if(D.length<2)return;D.splice(S.day,1);S.day=Math.max(0,S.day-1);head()}else if(t.dataset.rm!==undefined)D[S.day][1].splice(+t.dataset.rm,1);else return;save();day()});
+ if(t.id==="ted")ED=!ED;else if(t.id==="tad")D[S.day][1].push(["","新行程","",["walk"],0]);else if(t.id==="tah")D[S.day][1].push(["","新標題","",[],0,1]);else if(t.id==="tdd"){D.push(["新的一天",[]]);S.day=D.length-1;head()}else if(t.id==="tdr"){if(D.length<2)return;D.splice(S.day,1);S.day=Math.max(0,S.day-1);head()}else if(t.dataset.ai!==undefined){var it=D[S.day][1],q=+t.dataset.ai+1;while(q<it.length&&!it[q][5])q++;it.splice(q,0,["","新行程","",["walk"],0])}else if(t.dataset.mv!==undefined){var a=D[S.day][1],j=+t.dataset.mv,k=j+ +t.dataset.d;if(k<0||k>=a.length)return;var x=a[j];a[j]=a[k];a[k]=x}else if(t.dataset.rm!==undefined)D[S.day][1].splice(+t.dataset.rm,1);else return;save();day()});
 var FD=[["#","旅程"],["目的地","dest"],["出發地","fr"],["與出發地時差（小時）","tz","number"],["貨幣","cur"],["電壓與插座","volt"],["語言","lang"],["插畫主題","th","sel"],["#","去程航班"],["航班號","ob.no"],["出發機場代碼","ob.f"],["抵達機場代碼","ob.t"],["起飛時間","ob.d","time"],["抵達時間","ob.a","time"],["#","回程航班"],["航班號","rb.no"],["出發機場代碼","rb.f"],["抵達機場代碼","rb.t"],["起飛時間","rb.d","time"],["抵達時間","rb.a","time"]];
 function gp(p){return p.split(".").reduce(function(o,k){return o[k]},S.cfg)}
 $("sf").innerHTML=FD.map(function(r){return r[0]==="#"?'<p class="sb" style="margin:14px 0 0">'+r[1]+"</p>":r[2]==="sel"?"<label>"+r[0]+'<select data-p="th">'+TH.map(function(o){return'<option value="'+o[0]+'"'+((S.cfg.th||"auto")===o[0]?" selected":"")+">"+o[1]+"</option>"}).join("")+"</select></label>":"<label>"+r[0]+'<input type="'+(r[2]||"text")+'" data-p="'+r[1]+'" maxlength="40" value="'+esc(gp(r[1]))+'"></label>'}).join("");
